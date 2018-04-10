@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.hzyc.e_shop.mapper.AdminMapper">
+	<!-- 查询滚动条 -->
+	  <select id="selectNavigation" resultType="navigation">
+	  select * from navigation
+	  </select>
+	  <!-- 修改滚动条 -->
+	  <update id="updateNavigation" parameterType="navigation">
+	  update navigation set admin_id = #{admin_id},value = #{value},date = #{date} where id = #{id} 
+	  </update>
+	  <!-- 添加商品 -->
+	 <insert id="addCommodity" parameterType="commodity">
+	 insert into commodity(name,type,typename,trademark,number,price,discount,img,depict) values(#{name},#{type},#{typename},#{trademark},#{number},#{price},#{discount},#{img},#{depict})
+	 </insert>
+	 <!-- 查询商品类别 -->
+	 <select id="selectType" resultType="type">
+	 select * from type
+	 </select>
+	 <!-- 查询管理员密码 -->
+	 <select id="selectAdminPassword" parameterType="String" resultType="String">
+	 select password from admin where adminname = #{value}
+	 </select>
+	 <!-- 添加商品类别 -->
+	 <insert id="addType" parameterType="type">
+	 insert into type(type) values(#{type})
+	 </insert>
+	 <!-- 查询管理员信息 -->
+	 <select id="selectAdminByadminname" parameterType="String" resultType="admin">
+	 select * from admin where adminname = #{value}
+	 </select>
+	 <!-- 修改管理员信息 -->
+	 <update id="updataAdminInfo" parameterType="admin">
+	 update admin set brithday = #{brithday},sex = #{sex},address = #{address},cal = #{cal} where adminname = #{adminname}
+	 </update>
+	 <!-- 查询管理员姓名和身份证 -->
+	 <select id="selectAdminNameAndId_Card" parameterType="admin" resultType="admin">
+	 select name,Id_Card from admin where adminname = #{adminname}
+	 </select>
+	 <!-- 修改管理员密码 -->
+	 <update id="updateAdminPassword" parameterType="admin">
+	 update admin set password = #{password} where adminname = adminname
+	 </update>
+	 <select id="adminCommodity" resultType="commodity">
+	 select * from commodity
+	 </select>
+	 <select id="adminSelectCommodity" parameterType="Integer" resultType="commodity">
+	 select * from commodity where id = #{id}
+	 </select>
+	 <update id="adminUpdateCommodity" parameterType="commodity">
+	 update commodity set name = #{name},type = #{type},typename=#{typename},trademark=#{trademark},number=#{number},price=#{price},discount=#{discount},img=#{img},depict=#{depict} where id=#{id}
+	 </update>
+	 <select id="adminSelectNoOrder" resultType="noOrder">
+	 select * from noOrder
+	 </select>
+	 <update id="adminUpdateOrderState" parameterType="String">
+	 update noOrder set state = '以发货' where id = #{value}
+	 </update>
+	 <delete id="adminDeleteOrder" parameterType="String">
+	 delete from noOrder where id= #{value}
+	 </delete>
+	</mapper>

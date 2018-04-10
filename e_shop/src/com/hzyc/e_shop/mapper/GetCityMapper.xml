@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.hzyc.e_shop.mapper.GetCityMapper">
+	<select id="selectProvince" resultType="province">
+	select * from t_province
+	</select>
+	<select id="selectCity" resultType="city" parameterType="String">
+	select * from t_city where provinceCode = ${value}
+	</select>
+	<select id="selectTown" parameterType="String" resultType="city">
+	select * from t_town where cityCode = ${value}
+	</select>
+	</mapper>
