@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+		
+		<bean class="com.hzyc.e_shop.bean.Page" scope="prototype"></bean>
+		
+		<!-- springmvc:jsp+controller
+		核心组件：前端控制器，处理器适配器，处理器映射器，视图解析器，处理器
+		 -->
+		 
+		 <mvc:annotation-driven></mvc:annotation-driven>
+		 <context:component-scan base-package="com.hzyc.e_shop"></context:component-scan>
+
+		<!-- 如果想要在springmvc框架中使用文件上传，需要在springmvc_config.xml中添加一个多部分的表单解析器 
+		并且指定一个id：在加载DispatcherServlet时，如果不指定id是不能加载CommonsMultipartResolver类的。
+		
+		-->
+		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+		
+
+		 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+		
+</beans>
